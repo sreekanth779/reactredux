@@ -1,23 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { increment, decrement } from './actions';
+
 
 function App() {
+  const counter = useSelector(state => state.counter);
+  const isLogged = useSelector(state => state.isLogged);
+  const dispatch = useDispatch();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Counter Number =  {counter}</h1>
+      <button onClick={() => dispatch(increment(3))}>Add</button>
+      <button onClick={() => dispatch(decrement(3))}>Sub</button>
+      <h5>** Add / reduce muliples of 3 </h5>
+      {isLogged ? <h3>Valuable info</h3> : ''}
     </div>
   );
 }
